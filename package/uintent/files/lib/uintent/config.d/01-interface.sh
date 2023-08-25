@@ -10,7 +10,8 @@ zyxel,nwa55axe)
 	uplink_port="lan"
 	;;
 ubnt,unifiac-lite|\
-ubnt,unifiac-mesh)
+ubnt,unifiac-mesh|\
+zte,mf281)
 	uplink_port="eth0"
 	;;
 esac
