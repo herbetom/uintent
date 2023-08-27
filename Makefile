@@ -36,7 +36,7 @@ UINTENT_BOARD_LIST := "$(shell $(UINTENT_ENV) $(ROOT_DIR)/scripts/target-profile
 
 UINTENT_PACKAGES := "uintent uintent-config -wpad-basic-wolfssl hostapd-wolfssl ${UINTENT_PACKAGES}"
 
-all:
+all: check-config
 
 	# Create Build-key
 	@$(UINTENT_SDK_DIR)/staging_dir/host/bin/usign -G -p $(UINTENT_OPENWRT_DIR)/build.pub -s $(UINTENT_OPENWRT_DIR)/build.priv
@@ -68,6 +68,9 @@ download:
 	@mkdir -p $(UINTENT_DLDIR) || true
 	@mkdir -p $(UINTENT_OPENWRT_DIR) || true
 	@$(UINTENT_ENV) scripts/download-target.sh
+
+check-config:
+	@$(UINTENT_ENV) scripts/check-config.sh
 
 clean:
 	@rm -rf openwrt
