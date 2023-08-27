@@ -59,3 +59,4 @@ for ifname, network in pairs(profile["networks"]) do
 end
 
 uci:commit("network")
+uci:commit("firewall")

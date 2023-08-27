@@ -17,13 +17,15 @@
                     "type": "dhcp"
                 }
             },
+            "firewall-zone": "lan",
             "usteer": "main"
         },
         "cda": {
             "vlan": 101
         },
         "ffda": {
-            "vlan": 130
+            "vlan": 130,
+            "firewall-zone": "test"
         },
         "iot": {
             "vlan": 110
@@ -86,6 +88,15 @@
             "local_mode": "0",
             "remote_update_interval": "5000",
             "remote_node_timeout": "12"
+        }
+    },
+    "firewall": {
+        "zones": {
+            "test": {
+                "input": "ACCEPT",
+                "output": "ACCEPT",
+                "forward": "REJECT"
+            }
         }
     }
 }
