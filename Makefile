@@ -71,7 +71,7 @@ download:
 check-config:
 	@$(UINTENT_ENV) scripts/check-config.sh
 
-deploy-config:
+deploy-config: check-config
 	@$(UINTENT_ENV) scripts/deploy-config.sh
 
 clean:
