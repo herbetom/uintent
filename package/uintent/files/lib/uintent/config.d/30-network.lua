@@ -56,6 +56,9 @@ for ifname, network in pairs(profile["networks"]) do
 				end
 				uci:set("network", section_name, "netmask", address_config["netmask"])
 			end
+			if util.table_contains_key(address_config, "ip6assign") then
+				uci:set("network", section_name, "ip6assign", address_config["ip6assign"])
+			end
 		end
 	end
 	if util.table_contains_key(network, "ncm") then
