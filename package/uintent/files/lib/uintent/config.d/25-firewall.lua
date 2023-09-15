@@ -61,6 +61,9 @@ for zone_name, zone_settings in pairs(firewall_zones) do
 						table.insert(firewall_zone_interfaces, ifname .. "_" .. name .. "_4")
 					end
 				end
+				if util.table_contains_key(network, "ncm") then
+					table.insert(firewall_zone_interfaces, ifname .. "_" .. "ncm")
+				end
 			end
 		end
 	end
