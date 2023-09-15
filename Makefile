@@ -33,7 +33,7 @@ UINTENT_ENV = $(foreach var,$(UINTENT_VARS),$(var)=$(call escape,$($(var))))
 
 UINTENT_BOARD_LIST := "$(shell $(UINTENT_ENV) $(ROOT_DIR)/scripts/target-profile-list.sh)"
 
-UINTENT_PACKAGES := "uintent uintent-config -wpad-basic-wolfssl hostapd-wolfssl ${UINTENT_PACKAGES}"
+UINTENT_PACKAGES := "uintent uintent-config -wpad-basic-mbedtls hostapd-wolfssl ${UINTENT_PACKAGES}"
 
 all: check-config
 
