@@ -98,5 +98,13 @@
                 "forward": "REJECT"
             }
         }
+    },
+    "system": {
+        "server": [
+            "0.openwrt.pool.ntp.org",
+            "1.openwrt.pool.ntp.org",
+            "2.openwrt.pool.ntp.org",
+            "3.openwrt.pool.ntp.org"
+        ]
     }
 }
