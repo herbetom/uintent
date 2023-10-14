@@ -8,7 +8,10 @@ local profile = util.get_profile()
 local hostname = profile["hostname"]
 
 -- replace placeholders
-hostname = string.gsub(hostname, "{mac}", string.gsub(util.get_primary_mac(), ":", ""))
+local mac = util.get_primary_mac()
+if mac ~= nil then
+	hostname = string.gsub(hostname, "{mac}", string.gsub(mac, ":", ""))
+end
 
 uci:set("system", uci:get_first("system", "system"), "hostname", hostname)
 uci:commit("system")

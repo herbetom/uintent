@@ -59,7 +59,14 @@ end
 
 function M.get_profile()
 	local global_profile = M.read_profile_from_file("global")
-	local device_profile = M.read_profile_from_file(string.gsub(M.get_primary_mac(), ":", ""))
+	local mac = M.get_primary_mac()
+	local device_profile
+
+	if mac ~= nil then
+		device_profile = M.read_profile_from_file(string.gsub(mac, ":", ""))
+	else
+		print("no label_mac available, going to use global profile")
+	end
 
 	if device_profile == nil then
 		return global_profile
