@@ -5,6 +5,7 @@
 . /lib/functions/system.sh
 
 case $(board_name) in
+aruba,ap-303|\
 zyxel,nwa50ax|\
 zyxel,nwa55axe)
 	uplink_port="lan"

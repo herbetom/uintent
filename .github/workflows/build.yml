@@ -5,7 +5,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ ath79-generic, ramips-mt7621 ]
+        target: [ ath79-generic, ipq40xx-generic, ramips-mt7621 ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
