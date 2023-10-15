@@ -16,23 +16,60 @@ local function readall(f)
 	return data
 end
 
+function M.readfile(file)
+	return readall(io.open(file))
+end
+
 function M.exec(command)
 	return readall(io.popen(command))
 end
 
+local function read_mac(...)
+	local mac = M.readfile(string.format(...))
+	if mac then
+		return M.trim(mac)
+	end
+end
+
+local function get_phy_mac(index)
+	return read_mac("/sys/class/ieee80211/phy%d/macaddress", index)
+end
+
+local function get_netdev_addr(ifname)
+	return read_mac("/sys/class/net/%s/address", ifname)
+end
+
 function M.get_primary_mac()
-	local mac = M.exec("/usr/lib/uintent/label_mac.sh")
-
-	if mac == nil then
-		return nil
+	local function validate(mac)
+		mac = M.trim(mac)
+		if string.len(mac) ~= 17 then
+			return nil
+		end
+		return mac
 	end
 
-	mac = M.trim(mac)
-	if string.len(mac) ~= 17 then
-		return nil
+	local mac = validate(M.exec("/usr/lib/uintent/label_mac.sh"))
+
+	if mac ~= nil then
+		return mac
 	end
 
-	return mac
+	mac = validate(get_phy_mac(0))
+	if mac ~= nil then
+		return mac
+	end
+
+	mac = validate(get_phy_mac(1))
+	if mac ~= nil then
+		return mac
+	end
+
+	mac = validate(get_netdev_addr("eth0"))
+	if mac ~= nil then
+		return mac
+	end
+
+	return nil
 end
 
 function M.read_profile_from_file(name)
