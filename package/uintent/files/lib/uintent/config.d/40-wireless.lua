@@ -86,6 +86,9 @@ local function create_vifs(radio, vifs)
 						owe_transition_ifname = owe_vif_ifname,
 					})
 				end
+			else
+				print("security mode not recognized")
+				vif_config["disabled"] = 1
 			end
 
 			-- Management Frame Protection
