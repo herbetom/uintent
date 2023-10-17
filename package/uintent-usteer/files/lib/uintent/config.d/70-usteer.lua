@@ -24,6 +24,24 @@ for section_name, usteer_config in pairs(profile["usteer"]) do
 					for name, _ in pairs(network["ip4"]) do
 						table.insert(usteer_networks, ifname .. "_" .. name .. "_4")
 					end
+				elseif util.table_contains_key(network, "ip6") then
+					for name, _ in pairs(network["ip6"]) do
+						table.insert(usteer_networks, ifname .. "_" .. name .. "_6")
+					end
+				else
+					table.insert(usteer_networks, ifname .. "_dummy")
+				end
+
+				if util.table_contains_key(network, "firewall-zone") then
+					uci:section("firewall", "rule", ifname .. "_usteer_ll", {
+						dest_port = 16720,
+						src = network["firewall-zone"],
+						name = ifname .. "_usteer_ll",
+						src_ip = { "fe80::/64" },
+						target = "ACCEPT",
+						proto = "udp",
+					})
+					uci:save("firewall")
 				end
 			end
 		end
