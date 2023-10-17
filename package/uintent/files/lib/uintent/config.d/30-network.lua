@@ -16,7 +16,7 @@ uci:delete_all("network", "interface")
 
 uci:section("network", "interface", "loopback", {
 	netmask = "255.0.0.0",
-	ifname = "lo",
+	device = "lo",
 	ipaddr = "127.0.0.1",
 	proto = "static",
 })
@@ -38,7 +38,7 @@ for ifname, network in pairs(profile["networks"]) do
 
 		-- Add dummy interface to create bridge
 		uci:section("network", "interface", ifname .. "_dummy", {
-			ifname = bridge_name,
+			device = bridge_name,
 			proto = "none",
 		})
 	end
@@ -49,7 +49,7 @@ for ifname, network in pairs(profile["networks"]) do
 			local proto = address_config["type"]
 
 			uci:section("network", "interface", section_name, {
-				ifname = bridge_name,
+				device = bridge_name,
 				proto = proto,
 			})
 
@@ -74,7 +74,7 @@ for ifname, network in pairs(profile["networks"]) do
 			local proto = address_config["type"]
 
 			uci:section("network", "interface", section_name, {
-				ifname = bridge_name,
+				device = bridge_name,
 				proto = proto,
 			})
 
