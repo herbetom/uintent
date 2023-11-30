@@ -12,7 +12,8 @@ zyxel,nwa55axe)
 	;;
 ubnt,unifiac-lite|\
 ubnt,unifiac-mesh|\
-zte,mf281)
+zte,mf281|\
+zyxel,nwa50ax-pro)
 	uplink_port="eth0"
 	;;
 esac
