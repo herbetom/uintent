@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install dependencies
         run: sudo contrib/ci/install-dependencies.sh
       - name: Link example config
@@ -19,7 +19,7 @@ jobs:
       - name: Build Image
         run: make UINTENT_TARGET=${{ matrix.target }}
       - name: Archive build output
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.target }}_output
           path: output
