@@ -99,7 +99,7 @@
             }
         }
     },
-    "system": {
+    "ntp": {
         "server": [
             "0.openwrt.pool.ntp.org",
             "1.openwrt.pool.ntp.org",
