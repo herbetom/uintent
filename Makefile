@@ -33,7 +33,7 @@ UINTENT_ENV = $(foreach var,$(UINTENT_VARS),$(var)=$(call escape,$($(var))))
 
 UINTENT_BOARD_LIST := "$(shell $(UINTENT_ENV) $(ROOT_DIR)/scripts/target-profile-list.sh)"
 
-UINTENT_PACKAGES := "uintent uintent-config -wpad-basic-mbedtls hostapd-wolfssl ${UINTENT_PACKAGES}"
+UINTENT_PACKAGES := "uintent uintent-config -wpad-basic-mbedtls hostapd-wolfssl uintent-info ${UINTENT_PACKAGES}"
 
 all: check-config
 
@@ -50,6 +50,8 @@ all: check-config
 	$(SDK_MAKE) package/uintent/clean
 	$(SDK_MAKE) package/uintent-config/clean
 	$(SDK_MAKE) package/uintent/compile
+	$(SDK_MAKE) package/uintent-info/clean
+	$(SDK_MAKE) package/uintent-info/compile
 	$(SDK_MAKE) package/uintent-usteer/clean
 	# TODO: maybe only conditionally compile uintent-usteer
 	$(SDK_MAKE) package/uintent-usteer/compile

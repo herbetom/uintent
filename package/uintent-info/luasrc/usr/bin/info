@@ -1,0 +1,20 @@
+#!/usr/bin/lua
+
+local ubus = require('ubus').connect()
+
+local padTo = 24
+values = {}
+
+local system_board = ubus:call("system", "board", {})
+
+if system_board ~= nil then
+	table.insert(values, {"Hostname", system_board.hostname})
+	table.insert(values, {"Model", system_board.model})
+	table.insert(values, {"Target", system_board.release.target})
+end
+
+for _, value in ipairs(values) do
+	local labelLen = string.len(value[1]) + 1
+
+	print(value[1] .. ':' .. string.rep(' ', padTo - labelLen), value[2])
+end
