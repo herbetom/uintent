@@ -8,6 +8,8 @@
     lua-language-server
     shellcheck
     stylua
+    ncurses
+    bashInteractive
   ];
 
   # https://devenv.sh/languages/
